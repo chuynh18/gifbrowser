@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Gif browser</title>
+        <link rel="stylesheet" href="assets/css/style.css" />
+        <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <header>
+            <div id="logo">
+                <img src="assets/images/gif.gif" alt="gif logo" />
+            </div>
+            <div id="gifSearchContainer">
+                <div id="button"></div>
+                <div id="deleteModeMessage">Click a button above to retrieve GIFs!</div>
+                <div id="addButton">
+                    <form id="gifSearch">
+                        <label for="gifInput">Add a new GIF search</label>
+                        <input type="text" id="gifInput"><br>
+                        <input id="buttonAdd" type="submit" value="Add a button">
+                    </form>
+                    <div id="deleteMode">Remove buttons</div>
+                </div>
+            </div>
+        </header>
+        <div id="gifs"></div>
+
+        <script src="assets/javascript/script.js"></script>
+    </body>
+</html>

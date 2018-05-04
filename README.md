@@ -1,0 +1,1 @@
+Gif browser readme stub
