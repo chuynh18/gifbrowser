@@ -40,6 +40,7 @@ $(function() {
         $("#button").append(gifButton);
     }
 
+    // guard against abuse cases
     $("#buttonAdd").on("click", function(event) {
         var buttons = $("<div>");
         var enteredText = $("#gifInput").val();
@@ -61,9 +62,9 @@ $(function() {
             buttons.addClass("searchGif");
             $("#button").append(buttons);
             $("#gifInput").val("");
-        };
-        if (userAddedTopics.indexOf(enteredText) === -1 && topics.indexOf(enteredText) === -1) {
-            userAddedTopics.push(enteredText);
+            if (userAddedTopics.indexOf(enteredText) === -1 && topics.indexOf(enteredText) === -1) {
+                userAddedTopics.push(enteredText);
+            };
         };
     });
 
