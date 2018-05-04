@@ -205,19 +205,20 @@ $(function() {
 
     // click a gif to toggle play/pause
     $(document).on("click", ".gif", function() {
+        if (deleteGifsMode === false) {
+            if ($(this).attr("animationState") === "still") {
+            $(this).attr("animationState", "animated");
+            $(this).attr("src", $(this).attr("animated"));
+            console.log($(this).attr("src") + " set to " + $(this).attr("animationState"));
+            }
 
-        if ($(this).attr("animationState") === "still") {
-          $(this).attr("animationState", "animated");
-          $(this).attr("src", $(this).attr("animated"));
-          console.log($(this).attr("src") + " set to " + $(this).attr("animationState"));
-        }
-
-        else if ($(this).attr("animationState") === "animated") {
-          $(this).attr("animationState", "still");
-          $(this).attr("src", $(this).attr("still"));
-          console.log($(this).attr("src") + " set to " + $(this).attr("animationState"));
+            else if ($(this).attr("animationState") === "animated") {
+            $(this).attr("animationState", "still");
+            $(this).attr("src", $(this).attr("still"));
+            console.log($(this).attr("src") + " set to " + $(this).attr("animationState"));
+            };
         };
+    });
 
-      });
-
+// this belongs to jQuery's document ready    
 });
