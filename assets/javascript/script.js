@@ -3,6 +3,7 @@
 var deleteButtonsMode = false;
 var deleteGifsMode = false;
 var receivedGifs;
+var headerIsSticky = false;
 
 // When the user scrolls the page, execute myFunction
 window.onscroll = function() {myFunction()};
@@ -15,10 +16,14 @@ var sticky = header.offsetTop;
 
 // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
 function myFunction() {
-  if (window.pageYOffset >= 150) {
+  if (window.pageYOffset >= 150 && headerIsSticky === false) {
     header.classList.add("sticky");
-  } else {
+    headerIsSticky = true;
+    console.log(headerIsSticky);
+  } else if (headerIsSticky === true && window.pageYOffset < 50) {
     header.classList.remove("sticky");
+    headerIsSticky = false;
+    console.log(headerIsSticky);
   };
 };
 

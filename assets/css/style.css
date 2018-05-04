@@ -45,7 +45,11 @@ header::after {
   }
 
 .sticky + #gifs {
-    padding-top: 102px;
+    padding-top: 100px;
+}
+
+#gifs {
+    margin-top:40px;
 }
 
 #logo {
