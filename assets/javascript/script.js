@@ -100,7 +100,7 @@ $(function() {
                 gifDiv.addClass("giphyGif");
                 gifDiv.css({"display": "inline-block", "margin": "10px 20px"});
 
-                $("#gifs").append(gifDiv);
+                $("#gifs").prepend(gifDiv);
             };
 
         });
