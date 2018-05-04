@@ -14,6 +14,7 @@ $(function() {
         var gifButton = $("<div>");
         gifButton.addClass("searchGif");
         gifButton.attr("value", topics[i]);
+        gifButton.attr("offset", 0);
         gifButton.text(topics[i]);
         $("#button").append(gifButton);
     }
@@ -27,6 +28,7 @@ $(function() {
         else {
             buttons.text(enteredText);
             buttons.attr("value", enteredText);
+            buttons.attr("offset", 0);
             buttons.addClass("searchGif");
             $("#button").append(buttons);
             $("#gifInput").val("");
@@ -35,18 +37,20 @@ $(function() {
     });
 
     // this is the actual API call, limiting to 10 gifs to mitigate hitting rate limit
-    var searchGifOnClick = function () {
-        console.log("hey, you clicked " + $(this).attr("value"));
+    var searchGifOnClick = function(offset) {
 
+        // this is where the magic on the client side happens
         var giphy = $(this).attr("value");
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + giphy + "&api_key=PWuJeLENc0xCg38ONwNbgjIcGzyPXnyO&limit=10";
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + giphy + "&api_key=PWuJeLENc0xCg38ONwNbgjIcGzyPXnyO&limit=10&offset=" + ($(this).attr("offset"))*10;
+        console.log(queryURL);
+        
         // Creates AJAX call to Giphy
         $.ajax({
         url: queryURL,
         method: "GET"
         }).then(function(response) {
             console.log(response);
-        // receivedGifs.data[i].images.fixed_height.url
+
             receivedGifs = response;
 
             for (var i = 0; i < receivedGifs.data.length; i++) {
@@ -69,7 +73,11 @@ $(function() {
             };
 
         });
-          
+        // this increments the offset of the clicked div by 1 each time the div is clicked
+        var tempOffset = $(this).attr("offset");
+        tempOffset++;
+        $(this).attr("offset", tempOffset);
+    
     };
 
     // the thing that actually listens for the click
@@ -119,9 +127,6 @@ $(function() {
             $(document).off("click", ".giphyGif", deleteGifsOn);
         };
     });
-
-
-    
 
     // this function ensures the appropriate instructional message is always displayed
     $(document).on("click", function() {
