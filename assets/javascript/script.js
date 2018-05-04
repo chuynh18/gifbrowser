@@ -74,6 +74,7 @@ $(function() {
 
         });
         // this increments the offset of the clicked div by 1 each time the div is clicked
+        // every time the same button is clicked, NEW gifs are retrieved, NOT DUPES!  MAGICAL!
         var tempOffset = $(this).attr("offset");
         tempOffset++;
         $(this).attr("offset", tempOffset);
@@ -138,6 +139,22 @@ $(function() {
         }
         else if (deleteButtonsMode === false) {
             $("#deleteModeMessage").html("<font color='darkgreen'>Click a button above to retrieve GIFs!</font>")
+        };
+    });
+
+    // careful, this clears the page of GIFs
+    $(document).on("click", "#deleteAllGifs", function() {
+        var input = prompt('Wipe all GIFs from the page?  Type "Wipe them out" to confirm.');
+        console.log(input);
+        if (input === null) {
+            console.log("ABORT ABORT ABORT");
+            return;
+        }
+        else if (input === "Wipe them out") {
+            $("#gifs").empty();
+            // this resets all the button offsets to 0
+            // otherwise the user wouldn't be able to see the same gifs unless they refresh the page
+            $(".searchGif").attr("offset", 0);
         };
     });
 

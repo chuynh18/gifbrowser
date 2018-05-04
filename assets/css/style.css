@@ -33,7 +33,7 @@ header::after {
     clear: both;
     position: relative;
     top: 10px;
-    width: 500px;
+    width: 600px;
     float: right;
 }
 
@@ -97,11 +97,18 @@ header::after {
     width: 60px;
     float: left;
     margin: 0 5px;
-    
 }
 
 #deleteModeMessage {
     margin-right: 20px;
     display: block;
     clear: both;
+}
+
+#deleteAllGifs {
+    background-color: red;
+}
+
+#deleteAllGifs:active {
+    background-color: darkred;
 }
