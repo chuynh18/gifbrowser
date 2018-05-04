@@ -67,7 +67,6 @@ header::after {
     clear: both;
     position: absolute;
     width: 680px;
-    float: left;
 }
 
 #addButton::after {
@@ -124,6 +123,9 @@ header::after {
 
 #gifSearch {
     float: right;
+    position: relative;
+    right: 20px;
+    color: white;
 }
 
 .delete {
