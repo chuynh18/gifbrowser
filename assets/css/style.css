@@ -60,6 +60,7 @@ header::after {
     text-align: right;
     width: 100%;
     position: relative;
+    top: 10px;
 }
 
 #addButton {
@@ -67,7 +68,6 @@ header::after {
     position: absolute;
     width: 680px;
     float: left;
-    top: 10px;
 }
 
 #addButton::after {
@@ -101,6 +101,14 @@ header::after {
 
 .searchGif:hover {
     background-color: lightgreen;
+}
+
+.searchGifDelete {
+    background-color: orange;
+}
+
+.searchGifDelete:hover {
+    background-color: red;
 }
 
 .searchGif:active {
@@ -151,7 +159,8 @@ header::after {
     background-color: red;
     border-width: 3px;
     border-color: darkred;
-    margin-right: 50px;
+    margin-right: 35px;
+    margin-left: 15px;
 }
 
 #deleteAllGifs:active {
@@ -187,7 +196,7 @@ header::after {
         opacity: 1.0;
     }
     50% {
-        -webkit-transform: scale(1.4, 1.4);
+        -webkit-transform: scale(1.3, 1.3);
         opacity: 1.0;
     }
     100% {
@@ -201,7 +210,7 @@ header::after {
         opacity: 1.0;
     }
     50% {
-        -moz-transform: scale(1.4, 1.4);
+        -moz-transform: scale(1.3, 1.3);
         opacity: 1.0;
     }
     100% {
@@ -215,7 +224,7 @@ header::after {
         opacity: 1.0;
     }
     50% {
-        -ms-transform: scale(1.4, 1.4);
+        -ms-transform: scale(1.3, 1.3);
         opacity: 1.0;
     }
     100% {
@@ -229,7 +238,7 @@ header::after {
         opacity: 1.0;
     }
     50% {
-        -o-transform: scale(1.4, 1.4);
+        -o-transform: scale(1.3, 1.3);
         opacity: 1.0;
     }
     100% {
@@ -243,7 +252,7 @@ header::after {
         opacity: 1.0;
     }
     50% {
-        transform: scale(1.4, 1.4);
+        transform: scale(1.3, 1.3);
         opacity: 1.0;
     }
     100% {

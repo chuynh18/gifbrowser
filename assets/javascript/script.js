@@ -141,13 +141,13 @@ $(function() {
             $(document).off("click", ".searchGif", searchGifOnClick);
             console.log("Remove gif search button on click: " + deleteButtonsMode);
             $("#deleteMode").css("background-color", "red");
-            $(".searchGif").css("background-color", "orange");
+            $(".searchGif").addClass("searchGifDelete");
             $(document).on("click", ".searchGif", deleteModeOn);
         }
         else if (deleteButtonsMode === true) {
             deleteButtonsMode = false;
             $("#deleteMode").css("background-color", "lightcyan");
-            $(".searchGif").css("background-color", "green");
+            $(".searchGif").removeClass("searchGifDelete");
             console.log("Remove gif search button on click: " + deleteButtonsMode);
             $(document).on("click", ".searchGif", searchGifOnClick);
             $(document).off("click", ".searchGif", deleteModeOn);
@@ -222,6 +222,16 @@ $(function() {
             console.log($(this).attr("src") + " set to " + $(this).attr("animationState"));
             };
         };
+    });
+
+    // add mouseover and mouseoff events to append and remove classes to gif search buttons
+    // this fixes jQuery stomping on my pseudo elements
+    $(document).mouseenter(".searchGif", function() {
+        $(".searchGif", this).addClass("searchGifHover");
+    });
+
+    $(document).mouseleave(".searchGif", function() {
+        $(".searchGif", this).removeClass("searchGifHover");
     });
 
 // this belongs to jQuery's document ready    
