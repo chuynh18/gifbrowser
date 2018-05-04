@@ -173,6 +173,14 @@ header::after {
     -o-animation-iteration-count: infinite;
 }
 
+.isAnimated {
+    border: 3px solid green;
+}
+
+.isStill {
+    border: 3px solid red;
+}
+
 @-webkit-keyframes pulsate {
     0% {
         -webkit-transform: scale(1.0, 1.0);

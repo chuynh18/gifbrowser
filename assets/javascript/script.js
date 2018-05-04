@@ -93,7 +93,7 @@ $(function() {
                 gifImage.attr("animated", receivedGifs.data[i].images.fixed_height.url);
                 gifImage.attr("still", receivedGifs.data[i].images.fixed_height_still.url);
                 gifImage.attr("alt", receivedGifs.data[i].title);
-                gifImage.addClass("gif");
+                gifImage.addClass("gif isAnimated");
                 gifImage.attr("animationState", "animated");
 
                 var gifInfo = $("<div>");
@@ -209,12 +209,16 @@ $(function() {
             if ($(this).attr("animationState") === "still") {
             $(this).attr("animationState", "animated");
             $(this).attr("src", $(this).attr("animated"));
+            $(this).addClass("isAnimated");
+            $(this).removeClass("isStill");
             console.log($(this).attr("src") + " set to " + $(this).attr("animationState"));
             }
 
             else if ($(this).attr("animationState") === "animated") {
             $(this).attr("animationState", "still");
             $(this).attr("src", $(this).attr("still"));
+            $(this).removeClass("isAnimated");
+            $(this).addClass("isStill");
             console.log($(this).attr("src") + " set to " + $(this).attr("animationState"));
             };
         };
