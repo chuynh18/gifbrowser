@@ -7,7 +7,7 @@ var receivedGifs;
 $(function() {
 
     // this stores the default gif searches
-    var topics = ["Cool 3D World", "sfm", "prequel memes", "computational fluid dynamics", "finite element analysis", "bad cgi"];
+    var topics = ["cool 3d world", "sfm", "prequel memes", "computational fluid dynamics", "finite element analysis", "bad cgi"];
 
     // this appends the default gif searches
     for (var i = 0; i < topics.length; i++) {
@@ -49,7 +49,7 @@ $(function() {
         url: queryURL,
         method: "GET"
         }).then(function(response) {
-            console.log(response);
+            // console.log(response);
 
             receivedGifs = response;
 
@@ -144,18 +144,17 @@ $(function() {
 
     // careful, this clears the page of GIFs
     $(document).on("click", "#deleteAllGifs", function() {
-        var input = prompt('Wipe all GIFs from the page?  Type "Wipe them out" to confirm.');
-        console.log(input);
-        if (input === null) {
-            console.log("ABORT ABORT ABORT");
-            return;
-        }
-        else if (input === "Wipe them out") {
+        var input = prompt('Wipe all GIFs from the page?  Type "Wipe them out, all of them" to confirm.');
+        if (input === "Wipe them out, all of them") {
             $("#gifs").empty();
             // this resets all the button offsets to 0
             // otherwise the user wouldn't be able to see the same gifs unless they refresh the page
             $(".searchGif").attr("offset", 0);
-        };
+            console.log("Execute:  Order 66.  On a more lighthearted note, button offsets were also reset to 0.")
+        }
+        else {
+            console.log("ABORT:  the page will NOT be wiped.");
+        }
     });
 
 });
