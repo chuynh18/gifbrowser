@@ -1,6 +1,7 @@
 "use strict";
 
 var removeMode = false;
+var receivedGifs;
 
 $(function() {
 
@@ -32,9 +33,41 @@ $(function() {
         };
     });
 
-    // replace with api call
+    // this is the actual API call, limiting to 10 gifs to mitigate hitting rate limit
     var searchGifOnClick = function () {
         console.log("hey, you clicked " + $(this).attr("value"));
+
+        var giphy = $(this).attr("value");
+        var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + giphy + "&api_key=PWuJeLENc0xCg38ONwNbgjIcGzyPXnyO&limit=10";
+        // Creates AJAX call to Giphy
+        $.ajax({
+        url: queryURL,
+        method: "GET"
+        }).then(function(response) {
+            console.log(response);
+        // receivedGifs.data[i].images.fixed_height.url
+            receivedGifs = response;
+
+            for (var i = 0; i < receivedGifs.data.length; i++) {
+                var gifDiv = $("<div>");
+
+                var gifImage = $("<img>");
+                gifImage.attr("src", receivedGifs.data[i].images.fixed_height.url);
+                gifImage.attr("alt", receivedGifs.data[i].title);
+
+                var gifInfo = $("<div>");
+                gifInfo.append("<b>Title:</b> ", receivedGifs.data[i].title);
+                gifInfo.append("<br><b>Rating:</b> ", receivedGifs.data[i].rating);
+
+                gifDiv.append(gifImage);
+                gifDiv.append(gifInfo);
+                gifDiv.css({"display": "inline-block", "margin": "10px 20px"});
+
+                $("#gifs").append(gifDiv);
+            }
+
+        })
+          
     };
 
     // the thing that actually listens for the click
