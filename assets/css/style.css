@@ -33,7 +33,7 @@ header::after {
     clear: both;
     position: relative;
     top: 10px;
-    width: 420px;
+    width: 500px;
     float: right;
 }
 
@@ -81,7 +81,7 @@ header::after {
     float: right;
 }
 
-#deleteMode {
+.delete {
     background-color: lightcyan;
     padding: 5px 10px;
     border-top: 1px solid blue;
@@ -95,6 +95,8 @@ header::after {
     -ms-user-select: none;
     user-select: none;
     width: 60px;
+    float: left;
+    margin: 0 5px;
     
 }
 

@@ -1,6 +1,7 @@
 "use strict";
 
-var removeMode = false;
+var deleteButtonsMode = false;
+var deleteGifsMode = false;
 var receivedGifs;
 
 $(function() {
@@ -61,12 +62,13 @@ $(function() {
 
                 gifDiv.append(gifImage);
                 gifDiv.append(gifInfo);
+                gifDiv.addClass("giphyGif");
                 gifDiv.css({"display": "inline-block", "margin": "10px 20px"});
 
                 $("#gifs").append(gifDiv);
-            }
+            };
 
-        })
+        });
           
     };
 
@@ -78,35 +80,59 @@ $(function() {
         $(this).remove();
     };
 
-    // this function toggles between making the gif buttons remove themselves or searching for gifs
+    // this function toggles between making the gif search buttons remove themselves or searching for gifs
     // it works by creating the proper on click event handler while deleting the other one
     $(document).on("click", "#deleteMode", function() {
-        if (removeMode === false) {
-            removeMode = true;
+        if (deleteButtonsMode === false) {
+            deleteButtonsMode = true;
             $(document).off("click", ".searchGif", searchGifOnClick);
-            console.log("remove mode set to: " + removeMode);
+            console.log("Remove gif search button on click: " + deleteButtonsMode);
             $("#deleteMode").css("background-color", "red");
             $(document).on("click", ".searchGif", deleteModeOn);
         }
-        else if (removeMode === true) {
-            removeMode = false;
+        else if (deleteButtonsMode === true) {
+            deleteButtonsMode = false;
             $("#deleteMode").css("background-color", "lightcyan");
-            console.log("remove mode set to: " + removeMode);
+            console.log("Remove gif search button on click: " + deleteButtonsMode);
             $(document).on("click", ".searchGif", searchGifOnClick);
             $(document).off("click", ".searchGif", deleteModeOn);
         };
     });
+
+    // this is for deleting gifs
+    var deleteGifsOn = function() {
+        $(this).remove();
+    };
+
+    // this makes it so we delete gifs when delete mode is on and user clicks a gif
+    $(document).on("click", "#deleteGif", function() {
+        if (deleteGifsMode === false) {
+            deleteGifsMode = true;
+            $("#deleteGif").css("background-color", "red");
+            console.log("Remove individual GIFs on click: " + deleteGifsMode);
+            $(document).on("click", ".giphyGif", deleteGifsOn);
+        }
+        else if (deleteGifsMode === true) {
+            deleteGifsMode = false;
+            $("#deleteGif").css("background-color", "lightcyan");
+            console.log("Remove individual GIFs on click: " + deleteGifsMode);
+            $(document).off("click", ".giphyGif", deleteGifsOn);
+        };
+    });
+
+
+    
 
     // this function ensures the appropriate instructional message is always displayed
     $(document).on("click", function() {
         if ($("#button").children().length === 0) {
             $("#deleteModeMessage").html("<font color='red'><b>You've removed all the buttons.</b>  Add buttons to search for GIFs!</font>")
         }
-        else if (removeMode === true) {
-            $("#deleteModeMessage").html("<font color='red'><b>Delete mode enabled.</b>  You can remove GIF search buttons by clicking on them.</font>")
+        else if (deleteButtonsMode === true) {
+            $("#deleteModeMessage").html("<font color='red'><b>Delete mode enabled.</b>  You can remove search buttons by clicking on them.</font>")
         }
-        else if (removeMode === false) {
-            $("#deleteModeMessage").text("Click a button above to retrieve GIFs!")
+        else if (deleteButtonsMode === false) {
+            $("#deleteModeMessage").html("<font color='darkgreen'>Click a button above to retrieve GIFs!</font>")
         };
     });
 
