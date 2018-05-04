@@ -38,7 +38,7 @@ $(function() {
         console.log("hey, you clicked " + $(this).attr("value"));
 
         var giphy = $(this).attr("value");
-        var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + giphy + "&api_key=PWuJeLENc0xCg38ONwNbgjIcGzyPXnyO&limit=10";
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + giphy + "&api_key=PWuJeLENc0xCg38ONwNbgjIcGzyPXnyO&limit=10";
         // Creates AJAX call to Giphy
         $.ajax({
         url: queryURL,
