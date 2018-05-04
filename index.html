@@ -2,19 +2,21 @@
 <html>
     <head>
         <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Gif browser</title>
         <link rel="stylesheet" href="assets/css/style.css" />
         <link rel="icon" type="image/png" href="assets/images/favicon.png" />
         <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     </head>
     <body>
-        <header>
-            <div id="logo">
-                <img src="assets/images/gif.gif" alt="gif logo" />
-            </div>
+        <div id="logo">
+            <img src="assets/images/gif.gif" alt="gif logo" />
+        </div>
+        <div id="logoBlocker"></div>
+        <header id="myHeader">
             <div id="gifSearchContainer">
                 <div id="button"></div>
-                <div id="deleteModeMessage"><font color="darkgreen">Click a button above to retrieve GIFs!</font></div>
+                <div id="deleteModeMessage"><font color="white">Click a button above to retrieve GIFs!</font></div>
                 <div id="addButton">
                     <form id="gifSearch">
                         <label for="gifInput">Add a new GIF search</label>

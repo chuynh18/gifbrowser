@@ -4,10 +4,31 @@ var deleteButtonsMode = false;
 var deleteGifsMode = false;
 var receivedGifs;
 
-$(function() {
+// When the user scrolls the page, execute myFunction
+window.onscroll = function() {myFunction()};
 
-    // this stores the default gif searches
-    var topics = ["cool 3d world", "sfm", "prequel memes", "computational fluid dynamics", "finite element analysis", "bad cgi"];
+// Get the header
+var header = document.getElementById("myHeader");
+
+// Get the offset position of the navbar
+var sticky = header.offsetTop;
+
+// Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+function myFunction() {
+  if (window.pageYOffset >= 150) {
+    header.classList.add("sticky");
+  } else {
+    header.classList.remove("sticky");
+  };
+};
+
+// this stores the default gif searches
+var topics = ["cool 3d world", "sfm", "prequel memes", "computational fluid dynamics", "finite element analysis", "bad cgi"];
+
+// this stores the names of the buttons the user added
+var userAddedTopics = [];
+
+$(function() {
 
     // this appends the default gif searches
     for (var i = 0; i < topics.length; i++) {
@@ -22,8 +43,16 @@ $(function() {
     $("#buttonAdd").on("click", function(event) {
         var buttons = $("<div>");
         var enteredText = $("#gifInput").val();
+
+        event.preventDefault();
         if (enteredText === "") {
             alert("Enter some text first!");
+        }
+        else if (enteredText.length > 60) {
+            alert("Don't try to break my page!  Does your search really need to be that long?  60 characters ought to be enough for anybody.")
+        }
+        else if (topics.indexOf(enteredText) > -1 || userAddedTopics.indexOf(enteredText) > -1) {
+            alert("That button already exists.")
         }
         else {
             buttons.text(enteredText);
@@ -32,7 +61,9 @@ $(function() {
             buttons.addClass("searchGif");
             $("#button").append(buttons);
             $("#gifInput").val("");
-            event.preventDefault();
+        };
+        if (userAddedTopics.indexOf(enteredText) === -1 && topics.indexOf(enteredText) === -1) {
+            userAddedTopics.push(enteredText);
         };
     });
 
@@ -87,6 +118,14 @@ $(function() {
     // this is the function that removes GIF search buttons
     var deleteModeOn = function() {
         $(this).remove();
+        console.log($(this)[0]);
+        console.log($(this)[0].textContent);
+        if (topics.indexOf($(this)[0].textContent) > -1) {
+            topics.splice(topics.indexOf($(this)[0].textContent), 1);
+        }
+        if (userAddedTopics.indexOf($(this)[0].textContent) > -1) {
+            userAddedTopics.splice(userAddedTopics.indexOf($(this)[0].textContent), 1);
+        }
     };
 
     // this function toggles between making the gif search buttons remove themselves or searching for gifs
@@ -138,7 +177,7 @@ $(function() {
             $("#deleteModeMessage").html("<font color='red'><b>Delete mode enabled.</b>  You can remove search buttons by clicking on them.</font>")
         }
         else if (deleteButtonsMode === false) {
-            $("#deleteModeMessage").html("<font color='darkgreen'>Click a button above to retrieve GIFs!</font>")
+            $("#deleteModeMessage").html("<font color='white'>Click a button above to retrieve GIFs!</font>")
         };
     });
 

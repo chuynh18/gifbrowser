@@ -1,13 +1,35 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #c6c6c6;
+    background-color: #aaa;
+    margin: 0;
 }
 
+#logo {
+    background-color: #c6c6c6;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    display: block;
+}
+
+#logoBlocker{
+    background-color: #c6c6c6;
+    height: 151px;
+    display: block;
+    width: 100%;
+}
+
+
 header {
+    background-color: #666;
     border-bottom-style: solid;
     border-bottom-color: white;
     padding-bottom: 10px;
     overflow: auto;
+    width: 100%;
+    display: block;
+    min-height: 80px;
 }
 
 header::after {
@@ -16,8 +38,18 @@ header::after {
     display: table;
 }
 
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%
+  }
+
+.sticky + #gifs {
+    padding-top: 102px;
+}
+
 #logo {
-    float: left;
+    margin: auto;
     min-width: 400px;
     width: 20%;
     height: 150px;
@@ -26,15 +58,16 @@ header::after {
 #gifSearchContainer {
     float: right;
     text-align: right;
+    width: 100%;
+    position: relative;
 }
 
 #addButton {
-    display: block;
     clear: both;
-    position: relative;
-    top: 10px;
+    position: absolute;
     width: 680px;
-    float: right;
+    float: left;
+    top: 10px;
 }
 
 #addButton::after {
@@ -45,7 +78,7 @@ header::after {
 
 #button {
     float:right;
-    max-width: 1040px;
+    max-width: 1000px;
 }
 
 .searchGif {
@@ -88,10 +121,10 @@ header::after {
 .delete {
     background-color: lightcyan;
     padding: 5px 10px;
-    border-top: 1px solid blue;
-    border-left: 1px solid blue;
-    border-bottom: 1px solid gray;
-    border-right: 1px solid gray;
+    border-top: 2px solid blue;
+    border-left: 2px solid blue;
+    border-bottom: 2px solid gray;
+    border-right: 2px solid gray;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -109,8 +142,9 @@ header::after {
 
 #deleteModeMessage {
     margin-right: 20px;
-    display: block;
     clear: both;
+    width: 550px;
+    float: right;
 }
 
 #deleteAllGifs {
