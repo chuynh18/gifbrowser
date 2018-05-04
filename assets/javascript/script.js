@@ -81,7 +81,7 @@ $(function() {
         url: queryURL,
         method: "GET"
         }).then(function(response) {
-            // console.log(response);
+            console.log(response);
 
             receivedGifs = response;
 
@@ -90,7 +90,11 @@ $(function() {
 
                 var gifImage = $("<img>");
                 gifImage.attr("src", receivedGifs.data[i].images.fixed_height.url);
+                gifImage.attr("animated", receivedGifs.data[i].images.fixed_height.url);
+                gifImage.attr("still", receivedGifs.data[i].images.fixed_height_still.url);
                 gifImage.attr("alt", receivedGifs.data[i].title);
+                gifImage.addClass("gif");
+                gifImage.attr("animationState", "animated");
 
                 var gifInfo = $("<div>");
                 gifInfo.append("<b>Title:</b> ", receivedGifs.data[i].title);
@@ -137,11 +141,13 @@ $(function() {
             $(document).off("click", ".searchGif", searchGifOnClick);
             console.log("Remove gif search button on click: " + deleteButtonsMode);
             $("#deleteMode").css("background-color", "red");
+            $(".searchGif").css("background-color", "orange");
             $(document).on("click", ".searchGif", deleteModeOn);
         }
         else if (deleteButtonsMode === true) {
             deleteButtonsMode = false;
             $("#deleteMode").css("background-color", "lightcyan");
+            $(".searchGif").css("background-color", "green");
             console.log("Remove gif search button on click: " + deleteButtonsMode);
             $(document).on("click", ".searchGif", searchGifOnClick);
             $(document).off("click", ".searchGif", deleteModeOn);
@@ -196,5 +202,22 @@ $(function() {
             console.log("ABORT:  the page will NOT be wiped.");
         }
     });
+
+    // click a gif to toggle play/pause
+    $(document).on("click", ".gif", function() {
+
+        if ($(this).attr("animationState") === "still") {
+          $(this).attr("animationState", "animated");
+          $(this).attr("src", $(this).attr("animated"));
+          console.log($(this).attr("src") + " set to " + $(this).attr("animationState"));
+        }
+
+        else if ($(this).attr("animationState") === "animated") {
+          $(this).attr("animationState", "still");
+          $(this).attr("src", $(this).attr("still"));
+          console.log($(this).attr("src") + " set to " + $(this).attr("animationState"));
+        };
+
+      });
 
 });
